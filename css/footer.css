@@ -1,0 +1,28 @@
+.footer-container {
+    background-color: white;
+    color: black;
+    display: flex;
+    border-top: 2px solid black;
+    position: sticky;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 50px;
+    justify-content: space-between;
+  }
+  .footer-social-media {
+    display: flex;
+    flex-direction:row;
+    min-width: 100px;
+    justify-content: space-around;
+  }
+  .social-media-icon {
+    min-width: 20px;
+    max-width: 25px;
+    cursor: pointer;
+  }
+  .copyright-footer {
+    font-size: 18px;
+    align-self: center;
+    margin-right: 1%;
+  }
+  

@@ -1,0 +1,15 @@
+#flexbox{
+    display: flex;
+    flex-direction: row;
+}
+#sucursalesContainer{
+    width: 20%;
+    border-style: outset;
+    border-width: 5px;
+}
+#mostrarSucursales{
+    width: 17%;
+    display: block;
+    margin-left: auto;
+    margin-right: 0
+}

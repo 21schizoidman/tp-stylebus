@@ -1,0 +1,44 @@
+
+.register-plant-title {
+    font-size: 32px;
+    text-align: center;
+    padding: 2%;
+}
+
+.register-plant-form-container {
+    display: flex;
+    flex-direction:  column;
+    max-width: 70%;
+    margin: 0 auto;
+    gap: 10px;
+    padding-bottom: 10%;
+}
+.register-plant-form-container label {
+    font-weight: 800;
+}
+.register-plant-form-container input {
+    min-height: 20px;
+    border-radius: 2px;
+}
+
+#display-image{
+    display: none;
+    width: 400px;
+    height: 225px;
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+.submit-button-plant {
+    background-color: transparent;
+    border: 2px solid black;
+    min-height: 40px;
+    cursor: pointer;
+
+  }
+
+.submit-button-plant:hover {
+    transition: all .2s ease-out;
+    background-color: rgba(255, 143, 0, 0.37);
+}

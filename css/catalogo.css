@@ -1,0 +1,20 @@
+img {
+    max-width: 50px;
+    max-height: 50px;
+    aspect-ratio: 1/1;
+}
+
+
+.catalog-title {
+    font-size: 32px;
+    text-align: center;
+    padding: 1%;
+}
+
+.filter-input {
+    margin-bottom: 2%;
+}
+
+.label-filter {
+    margin-left: 1%;
+}
