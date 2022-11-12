@@ -1,6 +1,6 @@
 img {
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 100px;
+    max-height: 100px;
     aspect-ratio: 1/1;
 }
 
@@ -17,4 +17,8 @@ img {
 
 .label-filter {
     margin-left: 1%;
+}
+
+.tbody.tr.td {
+    padding: 5% !important;
 }
