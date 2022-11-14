@@ -2,6 +2,7 @@ import { destino } from "./destino.js";
 
 const verCarrito = document.getElementById("verCarrito");
 const modalContainer = document.getElementById("modal-container");
+const cantCarrito = document.getElementById("cant-carrito");
 
 let plantsToShow = destino
 let carrito = [];
@@ -39,6 +40,10 @@ const loadCatalog = () => {
         tdCategoria.textContent = destino.categoria;
         tr.appendChild(tdCategoria);
 
+        let tdPrecio = document.createElement("td");
+        tdPrecio.textContent = destino.precio;
+        tr.appendChild(tdPrecio);
+
         let tdBoton = document.createElement("td");
         const bttn = document.createElement("button");
         bttn.textContent = 'Agregar a carrito';
@@ -55,14 +60,11 @@ const loadCatalog = () => {
 
 var id = 0;
 const agregarACarrito = function (e) {
-    //ar valores = producto.target.parentNode.parentNode.textContent;
     let btn = e.target;
     // Fila a la que pertenece el botón
     let tr = btn.closest('tr');
 
     let tds = tr.querySelectorAll('td');
-    // Comprobar
-    console.log(tds[0]);
 
     id++;
     var producto = {
@@ -71,9 +73,11 @@ const agregarACarrito = function (e) {
         destino: tds[2].innerText,
         fechaSalida: tds[3].innerText,
         fechaLlegada: tds[4].innerText,
-        categoria: tds[5].innerText
+        categoria: tds[5].innerText,
+        precio: tds[6].innerText
     };
     carrito.push(producto);
+    carritoCounter();
 }
 
 /* Filtrar */
@@ -93,52 +97,61 @@ const buscaTabla = function () {
 }
 filterInput.addEventListener('keyup', buscaTabla);
 
-
 loadCatalog()
 
 /* CARRITO */
 const pintarCarrito = () => {
-        modalContainer.innerHTML = "";
-        modalContainer.style.display = "flex";
-        const modalHeader = document.createElement("div");
-        modalHeader.className = "modal-header"
-        modalHeader.innerHTML = `
+    modalContainer.innerHTML = "";
+    modalContainer.style.display = "flex";
+    const modalHeader = document.createElement("div");
+    modalHeader.className = "modal-header"
+    modalHeader.innerHTML = `
     <h1 class="model-header-title">Carrito</h1>`;
 
 
-        modalContainer.append(modalHeader);
+    modalContainer.append(modalHeader);
 
-        const modalButton = document.createElement("h1");
-        modalButton.innerText = "x";
-        modalButton.className = "modal-header-button";
+    const modalButton = document.createElement("h1");
+    modalButton.innerText = "x";
+    modalButton.className = "modal-header-button";
 
-        modalButton.addEventListener("click", () => {
-            modalContainer.style.display = "none";
-        });
+    modalButton.addEventListener("click", () => {
+        modalContainer.style.display = "none";
+    });
 
-        modalHeader.append(modalButton);
+    modalHeader.append(modalButton);
 
-        carrito.forEach((producto) => {
-            console.log(carrito);
-            let carritoContent = document.createElement("div");
-            carritoContent.className = "modal-content";
-            carritoContent.innerHTML = `<p>Origen: ${producto.origen}</p>
+    carrito.forEach((producto) => {
+        console.log(carrito);
+        let carritoContent = document.createElement("div");
+        carritoContent.className = "modal-content";
+        carritoContent.innerHTML = `<p>Origen: ${producto.origen}</p>
         <p>Destino: ${producto.destino}</p> 
         <p>Fecha Salida: ${producto.fechaSalida}</p>
         <p>Fecha Llegada: ${producto.fechaLlegada}</p>
-        <p>Categoria: ${producto.categoria}</p
-        `
-                ;
+        <p>Categoria: ${producto.categoria}</p>
+        <p>Precio: $${producto.precio}</p>`;
 
-            modalContainer.append(carritoContent);
+        modalContainer.append(carritoContent);
 
-            let eliminar = document.createElement("span");
-            eliminar.innerText = "❌";
-            eliminar.classList = "delete-product";
-            carritoContent.append(eliminar);
+        let eliminar = document.createElement("span");
+        eliminar.innerText = "❌";
+        eliminar.classList = "delete-product";
+        carritoContent.append(eliminar);
 
-            eliminar.addEventListener("click", eliminarProducto);
-        });
+        eliminar.addEventListener("click", eliminarProducto);
+    });
+    const total = carrito.reduce((acc, el) => acc + parseInt(el.precio),0);
+        const totalCompra = document.createElement("div");
+        totalCompra.className = "total-compra";
+        totalCompra.innerHTML = `Total: ${total}`;
+        modalContainer.append(totalCompra);
+
+    const boton = document.createElement("button");
+    boton.innerText = "Confirmar compra";
+    boton.className = "boton-compra";
+    modalContainer.append(boton);
+
 };
 
 verCarrito.addEventListener("click", pintarCarrito);
@@ -151,4 +164,10 @@ const eliminarProducto = () => {
         return carritoId !== foundId;
     });
     pintarCarrito();
+    carritoCounter();
+};
+
+const carritoCounter = () => {
+    cantCarrito.style.display = "block";
+    cantCarrito.innerText = carrito.length;
 };

@@ -5,7 +5,8 @@ export const destino  = [
         destino: "Cordoba",
         fechaSalida: "10/12/2022 8:00hs",
         fechaLlegada: "10/12/2022 19:00hs",
-        categoria: "Estandar"
+        categoria: "Estandar",
+        precio: 10000
     },
     {
         imgSrc: "../img/cordoba.jpg",
@@ -13,7 +14,8 @@ export const destino  = [
         destino: "Jujuy",
         fechaSalida: "10/12/2022 8:00hs",
         fechaLlegada: "10/12/2022 19:00hs",
-        categoria: "Estandar"
+        categoria: "Estandar",
+        precio: 10000
     },
     {
         imgSrc: "../img/cordoba.jpg",
@@ -21,7 +23,8 @@ export const destino  = [
         destino: "Buenos aires",
         fechaSalida: "2/12/2022 8:00hs",
         fechaLlegada: "3/12/2022 19:00hs",
-        categoria: "Estandar Plus"
+        categoria: "Estandar Plus",
+        precio: 10000
     }
 ]
 
