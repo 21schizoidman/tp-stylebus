@@ -19,11 +19,13 @@
   height: 80px;
   padding: 5px 10%;
   padding-top: 30px;
+  
 }
 
 .header .nav-links{
   list-style: none;
   font-family: 'Secular One', sans-serif;
+  width: 100%;
 }
 
 .header .nav-links li{
@@ -50,6 +52,7 @@
 	position: relative;
 	display: inline-block;
     color: #ffffff;
+    
 }
 /*BANNER*/
 
@@ -93,28 +96,28 @@
 
 .destinos {
     text-align: center;
-    font-family: 'Titan One', cursive;
     width: 100%;
     padding-top: 40px;
-    padding-bottom: 30%;
+    padding-bottom: 80px;
     display: block;
-    justify-content: center;
-    color: orange;
-    font-size: 30px;
+  
+}
+.destinos p {
+  font-family: 'Titan One', cursive;
+  justify-content: center;
+  color: orange;
+  font-size: 30px;
 }
 
-.turistas {
+.turistas .imagen{
   justify-content: center;
-  width: 100%;
-  height: 40px;
-  padding-left: 0px;
+  width: 600px;
 }
 
 #button {
   font-size: 20px;
-  padding-top: 300px;
+  padding-top:0;
 }
-
 
 /*
 .landing-container {
@@ -167,3 +170,112 @@
   transition: all 1s ease-out;
   background-color: rgba(255, 143, 0, 0.37);
 }*/ 
+
+/*REGISTRO*/
+
+.form-register {
+  width: 400px;
+  background: #24303c;
+  padding: 30px;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 4px;
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+}
+
+.form-register h4 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.controls {
+  width: 100%;
+  background: #24303c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #1f53c5;
+  font-size: 18px;
+  color: white;
+}
+
+.form-register p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.form-register a {
+  color: white;
+  text-decoration: none;
+}
+
+.form-register a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.form-register .botons {
+  width: 100%;
+  background: #1f53c5;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+}
+
+#navbar-login button {
+  color: yellow;
+}
+
+.boton a {
+  padding-left: 100px;
+}
+
+.alert-heading {
+  padding-top: 50px;
+}
+
+/*GALERIA*/
+
+#galeria h3{
+  text-align: center;
+  font-size: 25px;
+  color:orange;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-family: 'Titan One', cursive;
+}
+
+.contenedor-galeria {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-auto-rows: 500px;
+  padding-left: 20px;
+  padding-right: 20px;
+  grid-gap: 20px;
+  padding-bottom: 40px;
+    
+}
+
+.imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+   
+}
+
+/* FORMULARIO */
+
+.row {
+  justify-content: center;
+  margin: 20px;
+}
+
+.mb-4 {
+  margin-top: 100px;
+}
