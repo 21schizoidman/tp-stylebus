@@ -115,6 +115,95 @@
   padding-top: 300px;
 }
 
+/* CATALOGO */
+img {
+  max-width: 100px;
+  max-height: 100px;
+  aspect-ratio: 1/1;
+}
+
+
+.catalog-title {
+  font-size: 32px;
+  text-align: center;
+  padding: 1%;
+}
+
+.filter-input {
+  margin-bottom: 2%;
+}
+
+.label-filter {
+  margin-left: 1%;
+}
+
+.tbody.tr.td {
+  padding: 5% !important;
+}
+
+/*modal content*/
+.modal-container {
+  width: 80%;
+  margin: 0 10%;
+  max-height: 88vh;
+  color: black;
+  background-color: #f0ecec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*for the top*/
+  position: fixed;
+  overflow: auto;
+  z-index: 9;
+  top: 12vh;
+  scrollbar-color: none;
+}
+
+.modal-container::-webkit-scrollbar {
+  display: none;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-around;
+  background-color: #0a0909;
+  color: #fff;
+  width: 100%;
+}
+
+.modal-header-title {
+  justify-self: start;
+}
+
+.modal-header-button {
+  cursor: pointer;
+}
+
+.modal-container > .modal-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 85%;
+  margin: 10px;
+}
+
+.modal-container > div > img {
+  height: 120px;
+  width: 120px;
+}
+
+/*CarritoCounter*/
+.cantidad-carrito {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  padding: 4px;
+  top: 37px;
+  right: 14px;
+  position: absolute;
+  display: none;
+}
 
 /*
 .landing-container {
