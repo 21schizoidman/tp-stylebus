@@ -8,12 +8,15 @@ function validateForm() {
     if (email == "") {
         document.querySelector('.status').innerHTML = "Email no puede estar vacio";
         return false;
+        
     } else {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if(!re.test(email)){
             document.querySelector('.status').innerHTML = "Email con formato incorrecto";
             return false;
         }
+       
+        
     }
     var subject =  document.getElementById('subject').value;
     if (subject == "") {
