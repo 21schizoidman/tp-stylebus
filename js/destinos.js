@@ -1,66 +1,154 @@
 import { destino } from "./destino.js";
 
+const verCarrito = document.getElementById("verCarrito");
+const modalContainer = document.getElementById("modal-container");
+
 let plantsToShow = destino
+let carrito = [];
 
-const laodCatalog = () => {
-    let tableData = document.getElementById('table-catalog')
-    let table = `<table data-toggle="table" id="table-catalog">
-    <thead>
-    <tr>
-    <th>Imagen</th>
-    <th>Origen</th>
-    <th>Destino</th>
-    <th>Fecha salida</th>
-    <th>Fecha llegada</th>
-    <th>Categoria</th>
-    </tr>
-    </thead>
-    <tbody>
-    `
+const loadCatalog = () => {
+    const tablebody = document.querySelector("#tablebody");
 
-    plantsToShow.forEach((plant, i) => {
-        table = table + `<tr>
-        <td><img src="${plant.imgSrc}" /></td>
-        <td>${plant.origen}</td>
-        <td>${plant.destino}</td>
-        <td>${plant.fechaSalida}</td>
-        <td>${plant.fechaLlegada}</td>
-        <td>${plant.categoria}</td>
-    </tr>`
-    })
+    plantsToShow.forEach(destino => {
+        const tr = document.createElement("tr");
 
-    table = table +
-        `</tbody>
-    </table>`
-        ;
+        let tdImg = document.createElement("td");
+        const imagen = document.createElement("img");
+        imagen.src = destino.imgSrc;
+        imagen.width = 100;
+        tdImg.appendChild(imagen);
+        tr.appendChild(tdImg);
 
-    tableData.innerHTML = table
-}
-laodCatalog()
+        let tdOrigen = document.createElement("td");
+        tdOrigen.textContent = destino.origen;
+        tr.appendChild(tdOrigen);
 
-const filterCatalog = (word) => {
-    if (word.length === 0) {
-        plantsToShow = destino;
-    } else {
-        plantsToShow = destino.filter(plant => {
-            return (
-                plant.origen.toLowerCase().includes(word.toLowerCase()) ||
-                plant.destino.toLowerCase().includes(word.toLowerCase()) ||
-                plant.fechaSalida.toLowerCase().includes(word.toLowerCase()) ||
-                plant.fechaLlegada.toLowerCase().includes(word.toLowerCase()) ||
-                plant.categoria.toLowerCase().includes(word.toLowerCase()) 
-            )
+        let tdDestino = document.createElement("td");
+        tdDestino.textContent = destino.destino;
+        tr.appendChild(tdDestino);
+
+        let tdFechaSalida = document.createElement("td");
+        tdFechaSalida.textContent = destino.fechaSalida;
+        tr.appendChild(tdFechaSalida);
+
+        let tdFechaLlegada = document.createElement("td");
+        tdFechaLlegada.textContent = destino.fechaLlegada;
+        tr.appendChild(tdFechaLlegada);
+
+        let tdCategoria = document.createElement("td");
+        tdCategoria.textContent = destino.categoria;
+        tr.appendChild(tdCategoria);
+
+        let tdBoton = document.createElement("td");
+        const bttn = document.createElement("button");
+        bttn.textContent = 'Agregar a carrito';
+        tdBoton.textContent = "";
+        tdBoton.appendChild(bttn);
+        tdBoton.addEventListener('click', (producto) => {
+            agregarACarrito(producto);
         })
-    }
-    laodCatalog()
+        tr.appendChild(tdBoton);
+
+        tablebody.appendChild(tr);
+    });
 }
-const filterInput = document.getElementById('filter')
-let toFilter = ""
-filterInput.addEventListener('keyup', (e) => {
-    if (e.key == "Backspace") {
-        if (toFilter !== "") toFilter = toFilter.slice(0, toFilter.length - 1)
-    } else {
-        toFilter = toFilter + e.key.toLocaleLowerCase()
+
+var id = 0;
+const agregarACarrito = function (e) {
+    //ar valores = producto.target.parentNode.parentNode.textContent;
+    let btn = e.target;
+    // Fila a la que pertenece el botón
+    let tr = btn.closest('tr');
+
+    let tds = tr.querySelectorAll('td');
+    // Comprobar
+    console.log(tds[0]);
+
+    id++;
+    var producto = {
+        id: id,
+        origen: tds[1].innerText,
+        destino: tds[2].innerText,
+        fechaSalida: tds[3].innerText,
+        fechaLlegada: tds[4].innerText,
+        categoria: tds[5].innerText
+    };
+    carrito.push(producto);
+}
+
+/* Filtrar */
+const filterInput = document.getElementById('filter');
+const tabla = document.getElementById("table-catalog").tBodies[0];
+
+const buscaTabla = function () {
+    var texto = filterInput.value.toLowerCase();
+    var r = 0;
+    var row = tabla.rows[r];
+    while (row = tabla.rows[r++]) {
+        if (row.innerText.toLowerCase().indexOf(texto) !== -1)
+            row.style.display = null;
+        else
+            row.style.display = 'none';
     }
-    filterCatalog(toFilter)
-})
+}
+filterInput.addEventListener('keyup', buscaTabla);
+
+
+loadCatalog()
+
+/* CARRITO */
+const pintarCarrito = () => {
+        modalContainer.innerHTML = "";
+        modalContainer.style.display = "flex";
+        const modalHeader = document.createElement("div");
+        modalHeader.className = "modal-header"
+        modalHeader.innerHTML = `
+    <h1 class="model-header-title">Carrito</h1>`;
+
+
+        modalContainer.append(modalHeader);
+
+        const modalButton = document.createElement("h1");
+        modalButton.innerText = "x";
+        modalButton.className = "modal-header-button";
+
+        modalButton.addEventListener("click", () => {
+            modalContainer.style.display = "none";
+        });
+
+        modalHeader.append(modalButton);
+
+        carrito.forEach((producto) => {
+            console.log(carrito);
+            let carritoContent = document.createElement("div");
+            carritoContent.className = "modal-content";
+            carritoContent.innerHTML = `<p>Origen: ${producto.origen}</p>
+        <p>Destino: ${producto.destino}</p> 
+        <p>Fecha Salida: ${producto.fechaSalida}</p>
+        <p>Fecha Llegada: ${producto.fechaLlegada}</p>
+        <p>Categoria: ${producto.categoria}</p
+        `
+                ;
+
+            modalContainer.append(carritoContent);
+
+            let eliminar = document.createElement("span");
+            eliminar.innerText = "❌";
+            eliminar.classList = "delete-product";
+            carritoContent.append(eliminar);
+
+            eliminar.addEventListener("click", eliminarProducto);
+        });
+};
+
+verCarrito.addEventListener("click", pintarCarrito);
+
+
+const eliminarProducto = () => {
+    const foundId = carrito.find((element) => element.id);
+
+    carrito = carrito.filter((carritoId) => {
+        return carritoId !== foundId;
+    });
+    pintarCarrito();
+};
