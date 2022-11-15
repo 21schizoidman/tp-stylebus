@@ -130,7 +130,7 @@ const pintarCarrito = () => {
         <p>Fecha Salida: ${producto.fechaSalida}</p>
         <p>Fecha Llegada: ${producto.fechaLlegada}</p>
         <p>Categoria: ${producto.categoria}</p>
-        <p>Precio: $${producto.precio}</p>`;
+        <p>Precio: ${producto.precio}</p>`;
 
         modalContainer.append(carritoContent);
 
