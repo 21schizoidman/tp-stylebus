@@ -28,18 +28,18 @@
 
 	<section class="form-register">
 		<h4>REGISTRO</h4>
-		<form action="registroExitoso.html" name='validacionForm' onsubmit='return validar()'>
+		<form action="registroExitoso.html" name='validacionForm' onsubmit='return validateFormRegistro()'>
 			<div class="form-group">
 				<label for="name">Nombre</label>
-				<input type="text" class="form-control" id="nombre" placeholder="" required>
+				<input type="text" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="nombre" placeholder="" required>
 			</div>
 			<div class="form-group">
 				<label for="apellido">Apellido</label>
-				<input type="text" class="form-control" id="apellido" placeholder="" required>
+				<input type="text" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="apellido" placeholder="" required>
 			</div>
 			<div class="form-group">
 				<label for="dni">DNI</label>
-				<input type="number" class="form-control" id="dni" placeholder="" required>
+				<input type="number" pattern="^[\d]+$" class="form-control" id="dni" placeholder="" required>
 			</div>
 			<div class="form-group">
 				<label for="domicilio">Domicilio</label>
@@ -57,9 +57,11 @@
 				<label for="contra">Contraseña</label>
 				<input type="password" class="form-control" id="contra" placeholder="" required>
 			</div>
-			<button type="submit" class="btn btn-primary" >Registrarse</button>
+			<button type="submit" class="btn btn-primary">Registrarse</button>
 		</form>
+		<div class="status"></div>
 	</section>
+	<script defer src="validacion.js"></script>
 </body>
 
 </html>
