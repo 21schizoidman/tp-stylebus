@@ -36,8 +36,25 @@
 </header>
 
   <h1 class="catalog-title">Elegi tu lugar de destino</h1>
-  <label for="filter" class="label-filter">Filtrar</label>
-  <input type="text" id="filter" class="filter-input" />
+  <div id="buscador">
+    <label for="origen">origen: </label>
+    <select name="origen" id="origen">
+      <option value="Buenos Aires">Buenos Aires</option>
+      <option value="Cordoba">Cordoba</option>
+      <option value="Jujuy">Jujuy</option>
+    </select>
+    <label for="destino">destino: </label>
+    <select name="destino" id="destino">
+      <option value="Buenos Aires">Buenos Aires</option>
+      <option value="Cordoba">Cordoba</option>
+      <option value="Jujuy">Jujuy</option>
+    </select>
+    <div id="fechaIda">
+      <label for="ida">salida: </label>
+      <input type="date" class="form-control" id="ida" placeholder="" style="width: auto">
+    </div>
+    <button id="filtrar">Buscar</button>
+  </div>
 
 <div class="columnas">
   <table data-toggle="table" id="table-catalog">
