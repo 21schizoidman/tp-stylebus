@@ -100,10 +100,16 @@ const agregarACarrito = function (e) {
 const tabla = document.getElementById("table-catalog").tBodies[0];
 
 const buscaTabla = function () {
+    $('#ida').removeClass()
     let filas = tabla.querySelectorAll('tr');
     let origen = document.getElementById("origen").value
     let destino = document.getElementById("destino").value
     let ida = document.getElementById("ida").value
+    if(ida.length==0){
+        $('#ida').addClass('error')
+        return;
+    }
+        
     var dateParts = ida.split("-");
     ida = dateParts[2]+"/"+dateParts[1]+"/"+dateParts[0]
     let count = 0;
