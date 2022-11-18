@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Registro</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="styles.css">
+	<link rel="icon" href="img/favicon.jpg">
+	<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Secular+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+   
+
+        <nav>
+          <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="excursiones.html">Excursiones</a></li>
+            <li><a href="crearViaje.html">Registrar viaje</a></li>
+          </ul>
+        </nav>
+    </header>
+
+	<section class="form-register">
+		<h4>REGISTRO</h4>
+		<form action="registroExitoso.html" name='validacionForm' onsubmit='return validateFormRegistro()'>
+			<div class="form-group">
+				<label for="name">Nombre</label>
+				<input type="text" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="nombre" placeholder="" required>
+			</div>
+			<div class="form-group">
+				<label for="apellido">Apellido</label>
+				<input type="text" onkeydown="return /[a-z]/i.test(event.key)" class="form-control" id="apellido" placeholder="" required>
+			</div>
+			<div class="form-group">
+				<label for="dni">DNI</label>
+				<input type="number" pattern="^[\d]+$" class="form-control" id="dni" placeholder="" required>
+			</div>
+			<div class="form-group">
+				<label for="domicilio">Domicilio</label>
+				<input type="text" class="form-control" id="domicilio" placeholder="" required >
+			</div>
+            <div class="form-group">
+				<label for="fecha">Fecha de nacimiento</label>
+				<input type="date" class="form-control" id="fecha" placeholder="" required >
+			</div>
+            <div class="form-group">
+				<label for="email">Email</label>
+				<input type="text" class="form-control" id="email" placeholder="" required>
+			</div>
+            <div class="form-group">
+				<label for="contra">Contraseña</label>
+				<input type="password" class="form-control" id="contra" placeholder="" required>
+			</div>
+			<button type="submit" class="btn btn-primary">Registrarse</button>
+		</form>
+		<div class="status"></div>
+	</section>
+	<script defer src="validacion.js"></script>
+</body>
+
+</html>
