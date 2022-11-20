@@ -49,12 +49,17 @@ const loadCatalog = () => {
         tdCategoria.textContent = destino.categoria;
         tr.appendChild(tdCategoria);
 
+        let tdAsientos = document.createElement("td");
+        tdAsientos.textContent = destino.asientos;
+        tr.appendChild(tdAsientos);
+
         let tdPrecio = document.createElement("td");
         tdPrecio.textContent = destino.precio;
         tr.appendChild(tdPrecio);
 
         let tdBoton = document.createElement("td");
         const bttn = document.createElement("button");
+        bttn.className = "btn btn-success";
         bttn.textContent = 'Agregar a carrito';
         tdBoton.textContent = "";
         tdBoton.appendChild(bttn);
@@ -74,7 +79,7 @@ const agregarACarrito = function (e) {
     let tr = btn.closest('tr');
 
     let tds = tr.querySelectorAll('td');
-
+   
     var producto = {
         id: tds[0].innerText,
         origen: tds[2].innerText,
@@ -82,8 +87,10 @@ const agregarACarrito = function (e) {
         fechaSalida: tds[4].innerText,
         fechaLlegada: tds[5].innerText,
         categoria: tds[6].innerText,
-        precio: tds[7].innerText
+        asientos: tds[7].innerText,
+        precio: tds[8].innerText
     };
+    
     let cant = cantidad.get(producto.id)
     if(cant){
         cantidad.set(producto.id,cant+1)
@@ -104,13 +111,19 @@ const buscaTabla = function () {
     let origen = document.getElementById("origen").value
     let destino = document.getElementById("destino").value
     let ida = document.getElementById("ida").value
+    let cantPas = document.getElementById("cantpas").value
+    let categoria = document.getElementById("categoria").value
+
+
     var dateParts = ida.split("-");
     ida = dateParts[2]+"/"+dateParts[1]+"/"+dateParts[0]
+    
     let count = 0;
     for(let r of filas){
         let datos = r.querySelectorAll('td')
         let fechaIda = new Date(datos[4].innerText).toLocaleDateString("en-US")
-        if (datos[2].innerText==origen && datos[3].innerText==destino && fechaIda==ida)
+        
+        if (datos[2].innerText==origen && datos[3].innerText==destino && fechaIda==ida && cantPas<=datos[7].innerText && datos[6].innerText==categoria)
             tabla.rows[count].style.display = null;
         else
             tabla.rows[count].style.display = 'none';
@@ -155,7 +168,9 @@ const pintarCarrito = () => {
         <p>Fecha Salida: ${producto.fechaSalida}</p>
         <p>Fecha Llegada: ${producto.fechaLlegada}</p>
         <p>Categoria: ${producto.categoria}</p>
+        <p>Asientos: ${producto.asientos}</p>
         <p>Precio: ${producto.precio}</p>`;
+        
 
         modalContainer.append(carritoContent);
 
