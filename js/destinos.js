@@ -105,12 +105,14 @@ const tabla = document.getElementById("table-catalog").tBodies[0];
 
 const buscaTabla = function () {
     $('#ida').removeClass()
+    document.querySelector('.status').innerHTML = "";
     let filas = tabla.querySelectorAll('tr');
     let origen = document.getElementById("origen").value
     let destino = document.getElementById("destino").value
     let ida = document.getElementById("ida").value
     if(ida.length==0){
         $('#ida').addClass('error')
+        document.querySelector('.status').innerHTML = "La fecha no puede estar vacia";
         return;
     }
         
