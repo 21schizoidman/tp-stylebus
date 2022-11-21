@@ -5,8 +5,6 @@ const modalContainer = document.getElementById("modal-container");
 const cantCarrito = document.getElementById("cant-carrito");
 
 let destinosToShow = destino
-var origenes = ["Buenos Aires","Cordoba","Jujuy"];
-var destinos = ["Buenos Aires","Cordoba","Jujuy"];
 let carrito = [];
 var cantidad = new Map()
 var cantTotal = 0
@@ -87,7 +85,6 @@ const agregarACarrito = function (e) {
         fechaSalida: tds[4].innerText,
         fechaLlegada: tds[5].innerText,
         categoria: tds[6].innerText,
-        asientos: tds[7].innerText,
         precio: tds[8].innerText
     };
     
@@ -107,10 +104,16 @@ const agregarACarrito = function (e) {
 const tabla = document.getElementById("table-catalog").tBodies[0];
 
 const buscaTabla = function () {
+    $('#ida').removeClass()
     let filas = tabla.querySelectorAll('tr');
     let origen = document.getElementById("origen").value
     let destino = document.getElementById("destino").value
     let ida = document.getElementById("ida").value
+    if(ida.length==0){
+        $('#ida').addClass('error')
+        return;
+    }
+        
     let cantPas = document.getElementById("cantpas").value
     let categoria = document.getElementById("categoria").value
 
@@ -121,9 +124,9 @@ const buscaTabla = function () {
     let count = 0;
     for(let r of filas){
         let datos = r.querySelectorAll('td')
-        let fechaIda = new Date(datos[4].innerText).toLocaleDateString("en-US")
+        let fechaIda = datos[4].innerText
         
-        if (datos[2].innerText==origen && datos[3].innerText==destino && fechaIda==ida && cantPas<=datos[7].innerText && datos[6].innerText==categoria)
+        if (datos[2].innerText==origen && datos[3].innerText==destino && fechaIda==ida && Number(cantPas)<=Number(datos[7].innerText) && datos[6].innerText==categoria)
             tabla.rows[count].style.display = null;
         else
             tabla.rows[count].style.display = 'none';
@@ -168,7 +171,6 @@ const pintarCarrito = () => {
         <p>Fecha Salida: ${producto.fechaSalida}</p>
         <p>Fecha Llegada: ${producto.fechaLlegada}</p>
         <p>Categoria: ${producto.categoria}</p>
-        <p>Asientos: ${producto.asientos}</p>
         <p>Precio: ${producto.precio}</p>`;
         
 
