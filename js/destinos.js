@@ -195,7 +195,7 @@ const pintarCarrito = () => {
         modalContainer.append(totalCompra);
 
     const boton = document.createElement("button");
-    boton.innerText = "Confirmar compra";
+    boton.innerText = "Checkout";
     boton.className = "boton-compra";
     modalContainer.append(boton);
 
